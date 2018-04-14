@@ -280,6 +280,23 @@ class Embed:
         If the attribute has no value then :attr:`Empty` is returned.
         """
         return EmbedProxy(getattr(self, '_video', {}))
+    
+    def set_video(self, *, url):
+        """Sets the video for the embed content.
+
+        This function returns the class instance to allow for fluent-style
+        chaining.
+
+        Parameters
+        -----------
+        url: str
+            The source URL for the video. Only HTTP(S) is supported.
+        """
+        self._video = {
+            'url': str(url)
+        }
+        
+        return self
 
     @property
     def provider(self):
@@ -290,6 +307,26 @@ class Embed:
         If the attribute has no value then :attr:`Empty` is returned.
         """
         return EmbedProxy(getattr(self, '_provider', {}))
+    
+    def set_provider(self, *, name, url=EmptyEmbed):
+        """Sets the provider for the embed content.
+
+        This function returns the class instance to allow for fluent-style
+        chaining.
+
+        Parameters
+        -----------
+        name: str
+            The name of the provider.
+        url: str
+            The link to the provider.
+        """
+        self._provider = {
+            'name': str(name),
+            'url': str(url)
+        }
+        
+        return self
 
     @property
     def author(self):
